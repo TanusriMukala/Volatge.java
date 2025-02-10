@@ -1,0 +1,65 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package voltage;
+import java.util.*;
+import java.io.*;
+/**
+ *
+ * @author tanusri.mukala_stu.a
+ */
+public class Voltage {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException {
+        // TODO code application logic here
+        Scanner kb = new Scanner (new File("Voltage.dat"));
+        int lin = kb.nextInt();
+        for (int x=0;x<3;x++){
+            double v = 0;
+            double i = 0;
+            double p = 0;
+            double r = 0;
+            for (int y = 0; y<2;y++){
+            char a = kb.next().charAt(0);
+            kb.next();
+            if (a=='V'){
+                v = kb.nextDouble();    
+            }
+            if (a=='I'){
+                i = kb.nextDouble();
+            }
+            if (a=='R'){
+                r = kb.nextDouble();
+            }
+            if (a=='P'){
+                p = kb.nextDouble();
+            }
+            }
+        if (v == 0){
+            v = i*r;
+        }
+        if (i == 0){
+            i = p/v;
+        }
+        if (r == 0){
+            if (p == 0){
+                r = v/i;
+            }
+            if (i == 0){
+                r = p/v;
+            }
+        }
+        if (p == 0){
+            p = i*v;
+        }
+        System.out.printf("V = %.3f, I = %.3f, R = %.3f, P = %.3f\n",v,i,r,p);
+        }
+        
+    }
+    
+}
